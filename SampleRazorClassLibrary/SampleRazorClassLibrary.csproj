@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>SampleRazorClassLibrary</PackageId>
+        <Version>1.0.2</Version>
+        <RepositoryUrl>https://github.com/tsurutan/SampleRazorClassLibrary</RepositoryUrl>
     </PropertyGroup>
 
 
@@ -15,5 +17,4 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.25"/>
     </ItemGroup>
-
 </Project>
