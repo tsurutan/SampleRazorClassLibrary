@@ -5,8 +5,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>SampleRazorClassLibrary</PackageId>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <RepositoryUrl>https://github.com/tsurutan/SampleRazorClassLibrary</RepositoryUrl>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
 
