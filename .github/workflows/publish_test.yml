@@ -4,15 +4,17 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'SampleRazorClassLibrary/**'
+      - 'SampleTestLibrary/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: コードをチェックアウト
+        uses: actions/checkout@v4
       - name: NuGet パッケージを公開
         uses: ./.github/actions/publish
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pat-token: ${{ secrets.PAT_TOKEN }}
-          project-name: "SampleRazorClassLibrary"
+          project-name: "SampleTestLibrary"

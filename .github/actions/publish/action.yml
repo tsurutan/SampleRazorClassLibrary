@@ -1,5 +1,15 @@
 name: "Reusable NuGet Publish"
 description: "Builds and publishes a NuGet package to GitHub Packages"
+inputs:
+  github-token:
+    description: "認証用の GitHub トークン"
+    required: true
+  pat-token:
+    description: "認証用の PAT トークン"
+    required: true
+  project-name:
+    description: "プロジェクト名"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -9,12 +19,16 @@ runs:
       with:
         dotnet-version: '6.0.x'
     - name: Restore dependencies
+      shell: bash
       run: dotnet restore
     - name: Build
+      shell: bash
       run: dotnet build --configuration Release
     - name: Pack
+      shell: bash
       run: dotnet pack --configuration Release --output .
     - name: Push to GitHub Packages
+      shell: bash
       run: |
-        dotnet nuget add source --username tsurutan --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
-        dotnet nuget push "SampleRazorClassLibrary/bin/Release/*.nupkg" --api-key ${{ secrets.PAT_TOKEN }} --source "github"
+        dotnet nuget add source --username tsurutan --password ${{ inputs.github-token }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+        dotnet nuget push "${{ inputs.project-name }}/bin/Release/*.nupkg" --api-key ${{ inputs.pat-token }} --source "github"
