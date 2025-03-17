@@ -1,0 +1,14 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'SampleRazorClassLibrary/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: NuGet パッケージを公開
+        uses: ./.github/actions/publish

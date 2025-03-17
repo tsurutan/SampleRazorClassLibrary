@@ -1,0 +1,20 @@
+name: "Reusable NuGet Publish"
+description: "Builds and publishes a NuGet package to GitHub Packages"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release
+    - name: Pack
+      run: dotnet pack --configuration Release --output .
+    - name: Push to GitHub Packages
+      run: |
+        dotnet nuget add source --username tsurutan --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+        dotnet nuget push "SampleRazorClassLibrary/bin/Release/*.nupkg" --api-key ${{ secrets.PAT_TOKEN }} --source "github"
