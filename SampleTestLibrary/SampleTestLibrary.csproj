@@ -6,8 +6,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>SampleTestLibrary</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <RepositoryUrl>https://github.com/tsurutan/SampleRazorClassLibrary</RepositoryUrl>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="bunit" Version="1.38.5" />
+      <PackageReference Include="xunit" Version="2.9.3" />
+    </ItemGroup>
 
 </Project>
